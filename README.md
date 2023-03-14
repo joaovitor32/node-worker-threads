@@ -6,6 +6,7 @@
 npm i
 docker run -p 6379:6379 -it redis/redis-stack-server:latest
 npm run start
+explorer "http://localhost:3000"
 ```
 
 ### Links
