@@ -1,0 +1,84 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+   
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+          background-color: linen;
+        }
+        
+        div {
+            width: 100vw; 
+            display:flex; 
+            justify-content: center; 
+            align-items: center; 
+            text-align: center
+        }
+
+        tr {
+            width: 50vw; 
+            display: flex; 
+            justify-content: space-evenly;
+        }
+
+        .mainTd{
+            height:auto;
+            min-height:96px;
+            width: 50vw; 
+            display: flex; 
+            justify-content: space-evenly;
+            align-items:center;
+            text-align: center;
+        }
+        
+        </style>
+        </head>
+        <body>        
+</head>
+
+<body> 
+    <div>
+        <table id="employees"></table>
+    </div>
+    <script>
+        async function getapi(url) {
+            //try{
+            
+            // Storing response
+            const response = await fetch(url);
+            const data = await response.json();
+
+                let tab = 
+                    `<tr>
+                    <th>Name</th>
+                    <th>Weight</th>
+                    <th>Height</th>
+                    <th>Image</th>
+                    </tr>`;
+                
+                data.map(elem=>{
+                    tab += `<tr class="mainTd"> 
+                    <td>${elem.name.charAt(0).toUpperCase() + elem.name.slice(1)}</td>
+                    <td>${elem.weight}</td>
+                    <td>${elem.height}</td> 
+                    <td><img src="${elem.images}"/></td>          
+                    </tr>`;
+                })
+        
+            document.getElementById("employees").innerHTML = tab;
+                //console.log(data)
+                return response
+                //}catch(err){
+                //    console.log(err)
+                //}
+        }
+
+        getapi("pokemons.json");
+    </script>
+</body>
+   
+</html>
